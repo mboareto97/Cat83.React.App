@@ -18,8 +18,8 @@ function SideBarRoot(props: SideBarRootProps){
         {
             clsx
             (
-                'flex flex-col h-full py-4 items-center gap-10 bg-white rounded-r',
-                [props.open ? "w-80 px-4" : "w-24 px-3"],
+                'flex flex-col h-full py-2 px-2 items-center gap-10 bg-white rounded-r',
+                [props.open ? "w-80" : "w-24"],
                 'duration-500 relative',
                 props.className
             )
@@ -68,7 +68,7 @@ function SideBarItem(props: SideBarItemProps){
         {
             clsx
             (
-                'w-full h-10 flex gap-2 items-center cursor-pointer text-gray-300 hover:text-blue-900',
+                'flex w-full h-10 py-2 px-2 gap-2 items-center cursor-pointer rounded text-gray-300 hover:text-blue-900 hover:bg-gray-100',
                 [!props.open ? 'justify-center' : 'justify-start']
             )
         }>

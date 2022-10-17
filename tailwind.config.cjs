@@ -7,6 +7,12 @@ module.exports = {
     './src/**/*.tsx',
   ],
   theme: {
+    screens: {
+      'mobile': '640px',
+      'tablet': '900px',
+      'desktop':'1350px',
+    },
+
     fontSize: {
       xs: 14,
       sm: 16,

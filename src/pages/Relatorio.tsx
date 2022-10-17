@@ -1,75 +1,72 @@
-import clsx from "clsx";
-import { FileText, SquaresFour } from "phosphor-react";
-import { useState } from "react";
-import { Heading } from "../components/Heading";
-import { SideBar } from "../components/SideBar";
+import { DownloadSimple, TrashSimple } from "phosphor-react";
+import { Button } from "../components/Button";
+import { Switch } from "../components/Switch";
 import { Text } from "../components/Text";
 import { TextInput } from "../components/TextInput";
 
-export function Relatorio(){
-    const [open, setOpen] = useState(true);
-    
+export function Relatorio(){    
     return(
-        <div className='w-screen h-screen flex bg-gray-100'>
-            <div className='h-full flex flex-col'>
-                <SideBar.Root open={open}>
-                    {/* <CaretLeft className=
-                    {
-                        clsx
-                        (
-                            'bg-white text-blue-900 text-2xl rounded-full absolute', 
-                            '-right-3 top-9 border border-blue-900 cursor-pointer',
-                            [!open && 'rotate-180 duration-300']
-                        )
-                    } onClick={() => setOpen(!open)}/> */}
-                    <div className="flex h-10 gap-2 items-center cursor-pointer" onClick={() => setOpen(!open)}>
-                        <SideBar.Icon>
-                            <img className=
-                            {
-                                clsx
-                                (
-                                    [!open ? 'w-10' : 'w-32']
-                                )
-                            } src={!open ? '../../public/logo3.svg' : '../../public/logo-marfrig.svg'}></img>
-                        </SideBar.Icon>
-                        {open && <Heading className="mt-1" >| CAT 83</Heading>}                        
-                    </div>
+        <form className='flex flex-col py-4 px-4 rounded bg-gray-200 gap-6 justify-center'>
+            <div className='flex flex-col gap-6 items-center tablet:flex-row'>
+                <div className="flex flex-col justify-between gap-6 desktop:flex-row">
+                    <label htmlFor="input-1" className="flex flex-col gap-2">
+                        <Text className="font-semibold">Empresa</Text>
+                        <TextInput.Root>
+                            <TextInput.Input placeholder="Digite aqui seu texto...">
+
+                            </TextInput.Input>
+                        </TextInput.Root>
+                    </label>
+                    <label htmlFor="input-2" className="flex flex-col gap-2">
+                        <Text className="font-semibold">Mês</Text>
+                        <TextInput.Root>
+                            <TextInput.Input type="month" placeholder="Digite aqui seu texto...">
+
+                            </TextInput.Input>
+                        </TextInput.Root>
+                    </label>
+                </div>
+                <div className="flex flex-col justify-between gap-6 desktop:flex-row">
+                    <label htmlFor="input-3" className="flex flex-col gap-2">
+                        <Text className="font-semibold">Formato de Exportação</Text>
+                        <TextInput.Root>
+                            <TextInput.Input placeholder="Digite aqui seu texto...">
+
+                            </TextInput.Input>
+                        </TextInput.Root>
+                    </label>
                     
-                    <SideBar.Button>
-                        Login
-                    </SideBar.Button>
-                    <div className="flex flex-col gap-2">
-                        <SideBar.Item open={open} childrenIcon={<SquaresFour weight="bold" />}>
-                            {<a>Dashboad</a>}
-                        </SideBar.Item>
-                        <SideBar.Item open={open} childrenIcon={<FileText weight="bold" />} >
-                            {<a>Relatorio</a>}
-                        </SideBar.Item>
-                    </div>
-                </SideBar.Root>
+                    <label htmlFor="input-4" className="flex flex-col gap-2">
+                        <Text className="font-semibold">Ano</Text>
+                        <TextInput.Root>
+                            <TextInput.Input placeholder="Digite aqui seu texto...">
+
+                            </TextInput.Input>
+                        </TextInput.Root>
+                    </label>
+                </div>
             </div>
-            <div id='content' className='w-full flex flex-col px-10 py-10 items-center'>
-                <form className='w-full flex justify-center mt-8 '>
-                    <div className='flex gap-4 w-full h-[200px] py-4 px-4 rounded bg-gray-200'>
-                        <label htmlFor="input-1" className="flex flex-col gap-2">
-                            <Text>Input</Text>
-                            <TextInput.Root>
-                                <TextInput.Input placeholder="Digite aqui seu texto...">
+            <div className="flex flex-col gap-6 items-center tablet:flex-row">                
+                <div className="flex gap-2">
+                    <Text className="font-semibold">Gerar planilha com erro</Text>
+                    <Switch></Switch>
+                </div>
+            </div>
+            <div className="flex flex-col gap-2 items-center justify-end tablet:flex-row">
+                <Button.Root className="max-w-[192px]">
+                    <Button.Icon>
+                        <DownloadSimple weight="bold" />
+                    </Button.Icon>
+                    <Button.Action type="submit">Gerar Relatorio</Button.Action>
+                </Button.Root>
+                <Button.Root className="max-w-[192px] bg-red-800 hover:bg-red-700">
+                    <Button.Icon>
+                        <TrashSimple weight="bold" />
+                    </Button.Icon>
+                    <Button.Action type="submit">Deletar</Button.Action>
+                </Button.Root>
+            </div>
 
-                                </TextInput.Input>
-                            </TextInput.Root>
-                        </label>
-                        <label htmlFor="input-1" className="flex flex-col gap-2">
-                            <Text>Input 2</Text>
-                            <TextInput.Root>
-                                <TextInput.Input type="month" placeholder="Digite aqui seu texto...">
-
-                                </TextInput.Input>
-                            </TextInput.Root>
-                        </label>
-                    </div>
-                </form>
-            </div>            
-        </div>
+        </form>
     )
 }
