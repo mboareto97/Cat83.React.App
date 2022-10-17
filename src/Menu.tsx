@@ -1,16 +1,14 @@
 import clsx from "clsx";
 import { SquaresFour, FileText } from "phosphor-react";
 import { ReactNode, useState } from "react";
-import { Heading } from "./components/Heading";
 import { SideBar } from "./components/SideBar";
-import { TextInput } from "./components/TextInput";
 
 export interface MenuProps{
     children: ReactNode;
 }
 
 export function Menu(props: MenuProps){
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     
     return(
         <div className='w-screen h-screen flex bg-gray-100'>
@@ -34,8 +32,7 @@ export function Menu(props: MenuProps){
                                     [!open ? 'w-8' : 'w-28']
                                 )
                             } src={!open ? '../../public/logo3.svg' : '../../public/logo-marfrig.svg'}></img>
-                        </SideBar.Icon>
-                        {open && <Heading className="mt-1" >| CAT 83</Heading>}                        
+                        </SideBar.Icon>                    
                     </div>
                     
                     <div className="flex flex-col w-full px-4 gap-2">
