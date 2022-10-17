@@ -14,7 +14,7 @@ function ButtonRoot({children, className}: ButtonRootProps){
         {
             clsx
             (
-                'flex items-center justify-center w-min h-10 gap-2 py-3 px-4 cursor-pointer bg-blue-900 rounded font-bold text-white text-sm hover:bg-blue-700',
+                'flex items-center justify-center w-full h-10 gap-2 py-3 px-4 cursor-pointer bg-blue-900 rounded font-bold text-white text-sm hover:bg-blue-700',
                 className
             )
         }>
