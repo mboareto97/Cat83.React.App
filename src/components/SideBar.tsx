@@ -69,7 +69,7 @@ function SideBarItem(props: SideBarItemProps){
             clsx
             (
                 'w-full h-10 flex gap-2 items-center cursor-pointer text-gray-300 hover:text-blue-900',
-                [!props.open && 'justify-center']
+                [!props.open ? 'justify-center' : 'justify-start']
             )
         }>
             <Slot className='w-7 h-7'>
@@ -79,7 +79,7 @@ function SideBarItem(props: SideBarItemProps){
             {
                 clsx
                 (
-                    'text-gray-300 font-semibold',
+                    'font-semibold',
                     [!props.open && 'hidden duration-500']
                 )
             }>
