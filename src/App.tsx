@@ -1,10 +1,12 @@
 import './styles/global.css';
-import { Relatorio } from './pages/Relatorio';
-import { Menu } from './Menu';
+import { BrowserRouter as Router } from 'react-router-dom';
+import * as routes from './routes';
 
 export function App() {
 
   return (
-    <Menu children={<Relatorio />}/>
+    <Router>
+      <routes.default />
+    </Router>
   )
 }

@@ -1,6 +1,7 @@
 import { Slot } from '@radix-ui/react-slot';
 import clsx from 'clsx';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 import { Text } from './Text';
 
@@ -59,32 +60,38 @@ function SideBarButton(props: SideBarButtonProps) {
 export interface SideBarItemProps extends SideBarRootProps{
     childrenIcon: ReactNode;
     children: ReactNode;
+    path: string;
 }
 
 function SideBarItem(props: SideBarItemProps){
+    const navigate = useNavigate();
 
     return(
         <div className=
         {
             clsx
             (
-                'flex w-full h-10 py-2 px-2 gap-2 items-center cursor-pointer rounded text-gray-300 hover:text-blue-900 hover:bg-gray-100',
-                [!props.open ? 'justify-center' : 'justify-start']
+                'flex w-full h-12 py-2 px-2 items-center cursor-pointer rounded text-gray-300 hover:text-blue-900 hover:bg-gray-100',
+                [!props.open ? 'justify-center' : 'justify-start gap-2']
             )
-        }>
-            <Slot className='w-7 h-7'>
-                {props.childrenIcon}
-            </Slot>
-            <Text asChild className=
-            {
-                clsx
-                (
-                    'font-semibold',
-                    [!props.open && 'hidden duration-500']
-                )
-            }>
-                {props.children}
-            </Text>
+        } onClick={() => navigate(props.path)}>
+            <div className='flex items-center'>
+                <Slot className='w-7 h-7'>
+                    {props.childrenIcon}
+                </Slot>
+            </div>
+            <div>
+                <Text asChild className=
+                {
+                    clsx
+                    (
+                        'font-semibold',
+                        [!props.open && 'hidden']
+                    )
+                }>
+                    {props.children}
+                </Text>
+            </div>
         </div>
     )
 }

@@ -36,10 +36,10 @@ export function Menu(props: MenuProps){
                     </div>
                     
                     <div className="flex flex-col w-full px-4 gap-2">
-                        <SideBar.Item open={open} childrenIcon={<SquaresFour weight="bold" />}>
+                        <SideBar.Item open={open} childrenIcon={<SquaresFour weight="bold" />} path='/'>
                             {<a>Dashboad</a>}
                         </SideBar.Item>
-                        <SideBar.Item open={open} childrenIcon={<FileText weight="bold" />} >
+                        <SideBar.Item open={open} childrenIcon={<FileText weight="bold" />} path='/Relatorio'>
                             {<a>Relatorio</a>}
                         </SideBar.Item>
                     </div>
