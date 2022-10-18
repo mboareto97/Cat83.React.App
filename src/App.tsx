@@ -1,12 +1,12 @@
 import './styles/global.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import * as routes from './routes';
+import { MainRoutes } from './routes';
 
 export function App() {
 
   return (
     <Router>
-      <routes.default />
+      <MainRoutes />
     </Router>
   )
 }

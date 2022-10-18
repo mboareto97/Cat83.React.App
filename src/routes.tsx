@@ -5,7 +5,7 @@ import { Menu } from "./Menu";
     
 import { Relatorio } from "./pages/Relatorio";
 
-export default function MainRoutes(){
+export function MainRoutes(){
     return(
         <Routes>
             <Route path="/" element={<Menu children={<h1>Dashboard</h1>}/>}/>

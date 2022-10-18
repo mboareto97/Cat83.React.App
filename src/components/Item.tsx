@@ -11,17 +11,20 @@ export interface ItemProps{
 
 export function Item (props: ItemProps){
     return(
-        <div className='w-full flex gap-2 items-center py-3 px-6 rounded bg-transparent cursor-pointer hover:bg-gray-100'>
-            <Slot className='text-gray-300 w-5 h-5'>
+        <div className=
+        {
+            clsx
+            (
+                'flex items-center w-full ',
+                'py-3 px-6 gap-2 rounded bg-transparent',
+                'text-gray-300 cursor-pointer',
+                'hover:bg-gray-100 hover:text-blue-700',
+            )
+        }>
+            <Slot className='w-5 h-5'>
                 {props.childrenIcon}
             </Slot>
-            <Text asChild className=
-            {
-                clsx
-                (
-                    'text-gray-300'
-                )
-            }>
+            <Text asChild className=''>
                 {props.children}
             </Text>
         </div>

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { InputHTMLAttributes, ReactNode } from 'react'
 
 export interface TextInputRootProps {
@@ -6,7 +7,15 @@ export interface TextInputRootProps {
 
 function TextInputRoot(props: TextInputRootProps){
     return(
-        <div className='flex items-center w-64 gap-3 py-2 px-4 rounded bg-white focus-within:ring-2 ring-blue-700'>
+        <div className=
+        {
+            clsx
+            (
+                'flex items-center w-64',
+                'py-2 px-4 gap-3 rounded bg-white',
+                'focus-within:ring-2 ring-blue-700'
+            )
+        }>
             {props.children}
         </div>
     )
@@ -17,7 +26,15 @@ export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElemen
 function TextInputInput(props: TextInputInputProps){
     return(
         <input
-            className='bg-transparent flex-1 text-black text-xs placeholder:text-gray-300 outline-none'
+            className=
+            {
+                clsx
+                (
+                    'flex-1',
+                    'outline-none bg-transparent',
+                    'text-black text-xs placeholder:text-gray-300'
+                )
+            }
             {...props}
         />
     )

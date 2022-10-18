@@ -1,8 +1,7 @@
 import { Slot } from '@radix-ui/react-slot';
 import clsx from 'clsx';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { HtmlHTMLAttributes, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from './Button';
 import { Text } from './Text';
 
 
@@ -19,9 +18,10 @@ function SideBarRoot(props: SideBarRootProps){
         {
             clsx
             (
-                'flex flex-col h-full py-2 px-2 items-center gap-10 bg-white rounded-r',
+                'fixed flex flex-col h-full items-center',
                 [props.open ? "w-80" : "w-24"],
-                'duration-500 relative',
+                'py-2 px-2 gap-10 rounded-r bg-white',
+                'duration-500',
                 props.className
             )
         }>  
@@ -30,30 +30,25 @@ function SideBarRoot(props: SideBarRootProps){
     )
 }
 
-export interface SideBarIconProps {
-    children: ReactNode;
+export interface SideBarIconProps extends HtmlHTMLAttributes<HTMLElement>{
+    open: boolean;
 }
 
-function SideBarIcon({children}: SideBarIconProps){
+function SideBarIcon (props: SideBarIconProps){
     return(
-        <Slot className=''>
-            {children}
-        </Slot>
-    )
-}
-
-
-export interface SideBarButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-    children: ReactNode;
-}
-
-function SideBarButton(props: SideBarButtonProps) {
-    return(
-        <Button.Root {...props}>
-            <Button.Action>
-                {props.children}
-            </Button.Action>            
-        </Button.Root>
+        <div className='flex items-center h-10 gap-2 cursor-pointer' {...props}>
+            <img className=
+            {
+                clsx
+                (
+                    [!props.open ? 'w-8' : 'w-28']
+                )
+            } src=
+            {
+                !props.open ? '../../public/logo3.svg' : '../../public/logo-marfrig.svg'
+            }>
+            </img>
+        </div>  
     )
 }
 
@@ -71,10 +66,15 @@ function SideBarItem(props: SideBarItemProps){
         {
             clsx
             (
-                'flex w-full h-12 py-2 px-2 items-center cursor-pointer rounded text-gray-300 hover:text-blue-900 hover:bg-gray-100',
-                [!props.open ? 'justify-center' : 'justify-start gap-2']
+                'flex items-center w-full h-12 py-2 px-2',                
+                [!props.open ? 'justify-center' : 'justify-start gap-2'],
+                'cursor-pointer rounded text-gray-300',
+                'hover:text-blue-900 hover:bg-gray-100',
             )
-        } onClick={() => navigate(props.path)}>
+        } onClick=
+        {
+            () => navigate(props.path)
+        }>
             <div className='flex items-center'>
                 <Slot className='w-7 h-7'>
                     {props.childrenIcon}
@@ -99,6 +99,5 @@ function SideBarItem(props: SideBarItemProps){
 export const SideBar = {
     Root: SideBarRoot,
     Icon: SideBarIcon,
-    Button: SideBarButton,
     Item: SideBarItem
 }

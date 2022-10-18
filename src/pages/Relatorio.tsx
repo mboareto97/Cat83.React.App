@@ -11,41 +11,39 @@ export function Relatorio(){
     const Formato = [{Value:'csv', Text: '.csv'}, {Value:'xlsx', Text: '.xlsx'}];
 
     return(
-        <form className='flex flex-col py-4 px-4 rounded bg-gray-200 gap-6 justify-center'>
-            <div className='flex flex-col gap-6 items-center tablet:flex-row'>
+        <form className='flex flex-col justify-center p-4 gap-6 rounded bg-gray-200'>
+            <div className='flex flex-col items-center gap-6 tablet:flex-row'>
                 <div className="flex flex-col justify-between gap-6 desktop:flex-row">
-                    <label htmlFor="input-1" className="flex flex-col gap-2">
+                    <label htmlFor="Empresa" className="flex flex-col gap-2">
                         <Text className="font-semibold">Empresa</Text>                        
                         <SelectInput Data={Empresas} Placeholder='Selecione a empresa...'/>
                     </label>
-                    <label htmlFor="input-2" className="flex flex-col gap-2">
+                    <label htmlFor="Mes" className="flex flex-col gap-2">
                         <Text className="font-semibold">Mês</Text>
                         <SelectInput Data={Meses} Placeholder='Selecione o mês...'/>
                     </label>
                 </div>
                 <div className="flex flex-col justify-between gap-6 desktop:flex-row">
-                    <label htmlFor="input-3" className="flex flex-col gap-2">
+                    <label htmlFor="Formato" className="flex flex-col gap-2">
                         <Text className="font-semibold">Formato de Exportação</Text>
                         <SelectInput Data={Formato} Placeholder='Selecione o formato...' />
                     </label>
                     
-                    <label htmlFor="input-4" className="flex flex-col gap-2">
+                    <label htmlFor="Ano" className="flex flex-col gap-2">
                         <Text className="font-semibold">Ano</Text>
                         <TextInput.Root>
-                            <TextInput.Input maxLength={4} type="number" placeholder="Digite aqui o ano...">
-
-                            </TextInput.Input>
+                            <TextInput.Input maxLength={4} type="number" placeholder="Digite aqui o ano..." />
                         </TextInput.Root>
                     </label>
                 </div>
             </div>
-            <div className="flex flex-col gap-6 items-center tablet:flex-row">                
+            <div className="flex flex-col items-center tablet:flex-row">                
                 <div className="flex gap-2">
                     <Text className="font-semibold">Gerar planilha com erro</Text>
                     <Switch />
                 </div>
             </div>
-            <div className="flex flex-col gap-2 items-center justify-end tablet:flex-row">
+            <div className="flex flex-col items-center justify-end gap-2 tablet:flex-row">
                 <Button.Root className="max-w-[192px]">
                     <Button.Icon>
                         <DownloadSimple weight="bold" />
