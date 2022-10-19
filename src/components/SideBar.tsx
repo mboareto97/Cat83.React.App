@@ -19,9 +19,9 @@ function SideBarRoot(props: SideBarRootProps){
             clsx
             (
                 'fixed flex flex-col h-full items-center',
-                [props.open ? "w-80" : "w-24"],
-                'py-2 px-2 gap-10 rounded-r bg-white',
-                'duration-500',
+                [props.open ? "w-64" : "w-24"],
+                'py-4 px-2 gap-10 rounded-r bg-blue-900',
+                'duration-300',
                 props.className
             )
         }>  
@@ -36,16 +36,18 @@ export interface SideBarIconProps extends HtmlHTMLAttributes<HTMLElement>{
 
 function SideBarIcon (props: SideBarIconProps){
     return(
-        <div className='flex items-center h-10 gap-2 cursor-pointer' {...props}>
-            <img className=
+        <div className=
+        {
+            clsx
+            (
+                'flex items-center h-10',
+                'p-2 gap-2 rounded bg-white cursor-pointer', 
+                [!props.open && 'rotate-[360deg] duration-300']
+            )
+        } {...props}>
+            <img src=
             {
-                clsx
-                (
-                    [!props.open ? 'w-8' : 'w-28']
-                )
-            } src=
-            {
-                !props.open ? '../../public/logo3.svg' : '../../public/logo-marfrig.svg'
+                !props.open ? '../../public/logo_32.svg' : '../../public/logo-marfrig_32.svg'
             }>
             </img>
         </div>  
@@ -68,8 +70,8 @@ function SideBarItem(props: SideBarItemProps){
             (
                 'flex items-center w-full h-12 py-2 px-2',                
                 [!props.open ? 'justify-center' : 'justify-start gap-2'],
-                'cursor-pointer rounded text-gray-300',
-                'hover:text-blue-900 hover:bg-gray-100',
+                'cursor-pointer rounded text-white',
+                'hover:bg-blue-700',
             )
         } onClick=
         {

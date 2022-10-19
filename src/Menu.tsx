@@ -1,16 +1,18 @@
 import { SquaresFour, FileText } from "phosphor-react";
 import { ReactNode, useState } from "react";
+import { Heading } from "./components/Heading";
 import { SideBar } from "./components/SideBar";
 
 export interface MenuProps{
     children: ReactNode;
+    title: string;
 }
 
 export function Menu(props: MenuProps){
     const [open, setOpen] = useState(false);
     
     return(
-        <div className='flex w-screen h-screen bg-gray-100'>
+        <div className='flex w-screen h-full bg-gray-100 mobile:h-screen'>
             <SideBar.Root open={open}>
                 <SideBar.Icon open={open} onClick={() => setOpen(!open)}/>                    
                 <div className='flex flex-col w-full px-4 gap-2'>
@@ -22,7 +24,8 @@ export function Menu(props: MenuProps){
                     </SideBar.Item>
                 </div>
             </SideBar.Root>
-            <div id='content' className='flex flex-col w-full items-center py-8'>
+            <div id='content' className='flex flex-col w-full items-center py-8 gap-4 ml-20'>
+                <Heading >{props.title}</Heading>
                 {props.children}
             </div>            
         </div>

@@ -31,8 +31,7 @@ function TextInputInput(props: TextInputInputProps){
                 clsx
                 (
                     'flex-1',
-                    'outline-none bg-transparent',
-                    'text-black text-xs placeholder:text-gray-300'
+                    'outline-none bg-transparent','text-black text-xs placeholder:text-gray-300'
                 )
             }
             {...props}

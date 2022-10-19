@@ -1,14 +1,34 @@
 import { DownloadSimple, TrashSimple } from "phosphor-react";
+import { useState } from "react";
 import { Button } from "../components/Button";
 import { SelectInput } from "../components/SelectInput";
 import { Switch } from "../components/Switch";
 import { Text } from "../components/Text";
 import { TextInput } from "../components/TextInput";
+import { Cat83DataService } from "../services/Cat83.Service";
 
-export function Relatorio(){    
-    const Empresas = [{Value:'prom', Text: 'Promissao I'}, {Value:'var', Text: 'Varzea Beef'}, {Value:'bat', Text: 'Bataguassu'}];
-    const Meses = [{Value:'jan', Text: 'Janeiro'}, {Value:'fev', Text: 'Fevereiro'}, {Value:'mar', Text: 'Março'}];
-    const Formato = [{Value:'csv', Text: '.csv'}, {Value:'xlsx', Text: '.xlsx'}];
+export function Relatorio() {    
+    const Empresas = [{Value:'24', Text: 'Promissao I'}];
+    const Meses = [{Value:'1', Text: 'Janeiro'}, {Value:'2', Text: 'Fevereiro'}, {Value:'3', Text: 'Março'}, {Value:'4', Text: 'Abril'}];
+    const Formato = [{Value:'1', Text: '.xlsx'}, {Value:'2', Text: '.csv'}];
+
+    const[searchParams, setSearchParams] = useState<{
+        Empresa: any | null,
+        Mes: any | null,
+        Formato: any | null,
+        Ano: any | null,
+        GerarComErro: false
+    }>({Empresa: null, Mes: null, Formato: null, Ano: null, GerarComErro: false});
+
+    const handleSearch = () => {
+        setSearchParams({Empresa: 24, Mes: 10, Formato: 1, Ano: 2022, GerarComErro: false})
+        Cat83DataService.GeraPlanilha(searchParams);
+    };
+
+    const handleDelete = () => {
+        setSearchParams({...searchParams, Empresa: 24, Mes: 10, Ano: 2022})
+        Cat83DataService.RemovePlanlinha(searchParams);
+    }
 
     return(
         <form className='flex flex-col justify-center p-4 gap-6 rounded bg-gray-200'>
@@ -39,7 +59,7 @@ export function Relatorio(){
             </div>
             <div className="flex flex-col items-center tablet:flex-row">                
                 <div className="flex gap-2">
-                    <Text className="font-semibold">Gerar planilha com erro</Text>
+                    <Text className="font-semibold">Gerar com erro</Text>
                     <Switch />
                 </div>
             </div>
@@ -48,13 +68,13 @@ export function Relatorio(){
                     <Button.Icon>
                         <DownloadSimple weight="bold" />
                     </Button.Icon>
-                    <Button.Action type="submit">Gerar Relatorio</Button.Action>
+                    <Button.Action onClick={handleSearch}>Gerar Relatorio</Button.Action>
                 </Button.Root>
                 <Button.Root className="max-w-[192px] bg-red-800 hover:bg-red-700">
                     <Button.Icon>
                         <TrashSimple weight="bold" />
                     </Button.Icon>
-                    <Button.Action type="submit">Deletar</Button.Action>
+                    <Button.Action onClick={handleDelete}>Deletar</Button.Action>
                 </Button.Root>
             </div>
         </form>
