@@ -17,7 +17,7 @@ export function Text({size = 'md', children, asChild, className}: TextProps) {
         {
             clsx
             (
-                [className ? className : 'text-black font-sans'],                
+                [className ? className : 'font-sans'],                
                 {
                     'text-xs': size === 'sm',
                     'text-sm': size === 'md',

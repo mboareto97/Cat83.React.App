@@ -19,8 +19,10 @@ export function SelectInput(props: SelectInputRootProps){
                     (
                         'inline-flex items-center justify-between w-full',
                         'py-2 px-4 rounded gap-2 bg-white outline-none',
-                        'text-xs',
-                        'focus-within:ring-2 ring-blue-700',
+                        'text-xs text-gray-300',
+                        'transition duration-500 ring-blue-700',
+                        'focus-within:ring-2 focus-within:text-blue-700',
+                        'hover:shadow-square',
                     )
                 }>
                     <SelectPrimitive.Value placeholder={placeholder} />
@@ -32,24 +34,17 @@ export function SelectInput(props: SelectInputRootProps){
                             'cursor-default text-gray-300'
                         )
                     }>
-                        <CaretDown />
+                        <CaretDown weight='bold'/>
                     </SelectPrimitive.Icon>
                 </SelectPrimitive.Trigger>
                 
                 <SelectPrimitive.Content className='w-full rounded overflow-hidden bg-white'>
-                    <SelectPrimitive.ScrollUpButton className=
-                    {
-                        clsx
-                        (
-                            'flex items-center justify-center',
-                            'cursor-default'
-                        )
-                    }>
+                    <SelectPrimitive.ScrollUpButton className='flex items-center justify-center cursor-default'>
                         <SelectPrimitive.Icon>
                             <CaretUp />
                         </SelectPrimitive.Icon>
                     </SelectPrimitive.ScrollUpButton>
-                    <SelectPrimitive.Viewport className='p-1'>
+                    <SelectPrimitive.Viewport className='p-1 transition duration-500'>
                         {props.Data.map((option, index) => (
                             <SelectPrimitive.Item key={index} className=
                             {
@@ -57,8 +52,9 @@ export function SelectInput(props: SelectInputRootProps){
                                 (
                                     'relative flex items-center',
                                     'py-2 px-2 gap-1 rounded',
-                                    'outline-none select-none text-xs',
-                                    'hover:bg-blue-700 hover:text-white'
+                                    'outline-none select-none text-xs text-blue-700',
+                                    'transition duration-300',
+                                    'hover:bg-blue-700 hover:text-white',
                                 )
                             } value={option.Value}>
                                 <SelectPrimitive.ItemText>{option.Text}</SelectPrimitive.ItemText>

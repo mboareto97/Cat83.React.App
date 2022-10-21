@@ -4,7 +4,6 @@ import { HtmlHTMLAttributes, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text } from './Text';
 
-
 export interface SideBarRootProps {
     children: ReactNode;
     className?: string;
@@ -19,7 +18,7 @@ function SideBarRoot(props: SideBarRootProps){
             clsx
             (
                 'fixed flex flex-col h-full items-center',
-                [props.open ? "w-64" : "w-24"],
+                [props.open ? "w-56" : "w-20"],
                 'py-4 px-2 gap-10 rounded-r bg-blue-900',
                 'duration-300',
                 props.className
@@ -40,15 +39,16 @@ function SideBarIcon (props: SideBarIconProps){
         {
             clsx
             (
-                'flex items-center h-10',
-                'p-2 gap-2 rounded bg-white cursor-pointer', 
+                'flex items-center',
+                'p-2 gap-2 rounded cursor-pointer', 
                 [!props.open && 'rotate-[360deg] duration-300']
             )
         } {...props}>
-            <img src=
+            <img className='h-10' src=
             {
-                !props.open ? '../../public/logo_32.svg' : '../../public/logo-marfrig_32.svg'
-            }>
+                !props.open ? '../../public/logoBranco.svg' : '../../public/logoCatBranco.svg'
+            }
+            >
             </img>
         </div>  
     )
@@ -68,27 +68,40 @@ function SideBarItem(props: SideBarItemProps){
         {
             clsx
             (
-                'flex items-center w-full h-12 py-2 px-2',                
+                'flex items-center w-full h-10 py-2 px-2',                
                 [!props.open ? 'justify-center' : 'justify-start gap-2'],
                 'cursor-pointer rounded text-white',
+                'transition duration-300',
                 'hover:bg-blue-700',
             )
         } onClick=
         {
             () => navigate(props.path)
         }>
-            <div className='flex items-center'>
-                <Slot className='w-7 h-7'>
+            <div className=
+            {
+                clsx
+                (
+                    'flex items-center', 
+                    [!props.open && 'absolute'],
+                )
+            }>
+                <Slot className='w-6 h-6'>
                     {props.childrenIcon}
                 </Slot>
             </div>
-            <div>
+            <div className={
+                clsx
+                (
+                    [!props.open ? 'opacity-0 duration-[1ms]' : 'visible opacity-100 duration-500'],
+                    'transition'
+                )
+            }>
                 <Text asChild className=
                 {
                     clsx
                     (
                         'font-semibold',
-                        [!props.open && 'hidden']
                     )
                 }>
                     {props.children}

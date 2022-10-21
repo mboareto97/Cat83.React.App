@@ -31,28 +31,28 @@ export function Relatorio() {
     }
 
     return(
-        <form className='flex flex-col justify-center p-4 gap-6 rounded bg-gray-200'>
+        <form className='flex flex-col gap-6 text-gray-900'>
             <div className='flex flex-col items-center gap-6 tablet:flex-row'>
-                <div className="flex flex-col justify-between gap-6 desktop:flex-row">
+                <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Empresa" className="flex flex-col gap-2">
                         <Text className="font-semibold">Empresa</Text>                        
-                        <SelectInput Data={Empresas} Placeholder='Selecione a empresa...'/>
+                        <SelectInput Data={Empresas} Placeholder='Empresa'/>
                     </label>
                     <label htmlFor="Mes" className="flex flex-col gap-2">
                         <Text className="font-semibold">Mês</Text>
-                        <SelectInput Data={Meses} Placeholder='Selecione o mês...'/>
+                        <SelectInput Data={Meses} Placeholder='Mês'/>
                     </label>
                 </div>
-                <div className="flex flex-col justify-between gap-6 desktop:flex-row">
+                <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Formato" className="flex flex-col gap-2">
                         <Text className="font-semibold">Formato de Exportação</Text>
-                        <SelectInput Data={Formato} Placeholder='Selecione o formato...' />
+                        <SelectInput Data={Formato} Placeholder='Formato' />
                     </label>
                     
                     <label htmlFor="Ano" className="flex flex-col gap-2">
                         <Text className="font-semibold">Ano</Text>
                         <TextInput.Root>
-                            <TextInput.Input maxLength={4} type="number" placeholder="Digite aqui o ano..." />
+                            <TextInput.Input maxLength={4} type="year" placeholder="Digite aqui o ano..." />
                         </TextInput.Root>
                     </label>
                 </div>

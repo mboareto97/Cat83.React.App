@@ -29,9 +29,10 @@ module.exports = {
       white: '#fff',
 
       gray: {
-        300: '#bfbfbf',
-        200: '#eef0f5',
-        100: '#f8f9fa'
+        900: '#121214',
+        300: '#7C7C8A',
+        200: '#C4C4CC',
+        100: '#E1E1E6'
       },
 
       blue: {
@@ -53,6 +54,9 @@ module.exports = {
     extend: {  
       fontFamily: {
         sans: [ 'Inter', 'sans-serif' ]
+      },
+      boxShadow: {
+        'square': '0px 0px 5px 3px rgba(0, 0, 0, 0.3)',
       },
     },
   },

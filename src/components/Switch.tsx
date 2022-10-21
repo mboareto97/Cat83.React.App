@@ -12,6 +12,7 @@ export function Switch({}: SwitchProps) {
                 'w-[42px] h-[25px]',
                 'bg-gray-300 rounded-full',
                 'checked:bg-green-400',
+                'hover:shadow-square transition duration-500'
             )
         }>
             <SwitchPrimitive.Thumb className=
@@ -22,6 +23,7 @@ export function Switch({}: SwitchProps) {
                     'bg-white rounded-full',
                     'transition-transform translate-x-[2px] will-change-transform',
                     'checked:translate-x-[19px]',
+                    'duration-500',
                 )
             }/>
         </SwitchPrimitive.Root>

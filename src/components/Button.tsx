@@ -17,7 +17,9 @@ function ButtonRoot({children, className}: ButtonRootProps){
                 'flex items-center justify-center w-full h-10',
                 'gap-2 py-3 px-4 bg-blue-900 rounded',
                 'cursor-pointer font-bold text-white text-sm',
+                'transition duration-300',
                 'hover:bg-blue-700 focus-within:ring-2',
+                'hover:shadow-md',
                 className
             )
         }>

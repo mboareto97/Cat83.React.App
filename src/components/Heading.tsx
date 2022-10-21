@@ -12,13 +12,13 @@ export function Heading({size = 'md', children, className}: HeadingProps) {
         {
             clsx
             (
-                'text-blue-900 font-bold',
+                'font-bold',
                 {
                     'text-lg': size === 'sm',
                     'text-xl': size === 'md',
                     'text-2xl': size === 'lg'
                 },
-                className
+                [className ? className : 'text-blue-900']
             )
         }>
             {children}
