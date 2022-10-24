@@ -6,53 +6,96 @@ import { Switch } from "../components/Switch";
 import { Text } from "../components/Text";
 import { TextInput } from "../components/TextInput";
 import { Cat83DataService } from "../services/Cat83.Service";
+import { MesesType } from "../types/MesesType";
+import { EmpresasType } from "../types/EmpresasType";
+import { FormatosType } from "../types/FormatosType";
 
-export function Relatorio() {    
-    const Empresas = [{Value:'24', Text: 'Promissao I'}];
-    const Meses = [{Value:'1', Text: 'Janeiro'}, {Value:'2', Text: 'Fevereiro'}, {Value:'3', Text: 'Março'}, {Value:'4', Text: 'Abril'}];
-    const Formato = [{Value:'1', Text: '.xlsx'}, {Value:'2', Text: '.csv'}];
-
-    const[searchParams, setSearchParams] = useState<{
-        Empresa: any | null,
-        Mes: any | null,
-        Formato: any | null,
-        Ano: any | null,
-        GerarComErro: false
-    }>({Empresa: null, Mes: null, Formato: null, Ano: null, GerarComErro: false});
+export function Relatorio() {
+    
+    const[searchParams, setSearchParams] = useState({Empresa: 0, Mes: 0, Formato: 0, Ano: 0, GerarComErro: false});
 
     const handleSearch = () => {
-        setSearchParams({Empresa: 24, Mes: 10, Formato: 1, Ano: 2022, GerarComErro: false})
+        console.log(searchParams);
         Cat83DataService.GeraPlanilha(searchParams);
     };
 
     const handleDelete = () => {
-        setSearchParams({...searchParams, Empresa: 24, Mes: 10, Ano: 2022})
         Cat83DataService.RemovePlanlinha(searchParams);
     }
 
+    const handleChange = (campo:string, event: React.ChangeEvent<HTMLSelectElement>) => {
+        type obj = keyof typeof searchParams;
+        const campoChange = campo as obj;
+        const value = event.target.value;
+        
+        setSearchParams({...searchParams, [campoChange]: Number(value)});
+    }
+
+    const typeToArray = (value: any) => {
+        return Object.keys(value)
+                        .filter
+                        (
+                            (id) => isNaN(Number(id))
+                        )
+                        .map
+                        (
+                            (text) => 
+                            { 
+                                return { 
+                                    Value: value[text as keyof typeof value], Text: text
+                                }; 
+                            }
+                        );
+    }
+
+    
+    const MesesArray = typeToArray(MesesType);    
+    const EmpresasArray = typeToArray(EmpresasType);
+    const FormatosArray = typeToArray(FormatosType);
+
     return(
-        <form className='flex flex-col gap-6 text-gray-900'>
+        <div className='flex flex-col gap-6 text-gray-900'>
             <div className='flex flex-col items-center gap-6 tablet:flex-row'>
                 <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Empresa" className="flex flex-col gap-2">
-                        <Text className="font-semibold">Empresa</Text>                        
-                        <SelectInput Data={Empresas} Placeholder='Empresa'/>
+                        <Text className="font-semibold">Empresa</Text>
+                        <SelectInput.Root>
+                            <SelectInput.View campo='Empresa' eventChange={handleChange}>
+                                <SelectInput.Item dado={EmpresasArray} />
+                            </SelectInput.View>
+                        </SelectInput.Root>
                     </label>
                     <label htmlFor="Mes" className="flex flex-col gap-2">
                         <Text className="font-semibold">Mês</Text>
-                        <SelectInput Data={Meses} Placeholder='Mês'/>
+                        <SelectInput.Root>
+                            <SelectInput.View campo='Mes' eventChange={handleChange}>
+                                <SelectInput.Item dado={MesesArray} />
+                            </SelectInput.View>
+                        </SelectInput.Root>
                     </label>
                 </div>
                 <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Formato" className="flex flex-col gap-2">
                         <Text className="font-semibold">Formato de Exportação</Text>
-                        <SelectInput Data={Formato} Placeholder='Formato' />
+                        <SelectInput.Root>
+                            <SelectInput.View campo='Formato' eventChange={handleChange}>
+                                <SelectInput.Item dado={FormatosArray} />
+                            </SelectInput.View>
+                        </SelectInput.Root>
                     </label>
                     
                     <label htmlFor="Ano" className="flex flex-col gap-2">
                         <Text className="font-semibold">Ano</Text>
                         <TextInput.Root>
-                            <TextInput.Input maxLength={4} type="year" placeholder="Digite aqui o ano..." />
+                            <TextInput.Input 
+                                maxLength={4} 
+                                type="year" 
+                                placeholder="Digite aqui o ano..." 
+                                onChange=
+                                {
+                                    e => setSearchParams({...searchParams, Ano: Number(e.target.value)})
+                                } 
+                            />
                         </TextInput.Root>
                     </label>
                 </div>
@@ -60,7 +103,7 @@ export function Relatorio() {
             <div className="flex flex-col items-center tablet:flex-row">                
                 <div className="flex gap-2">
                     <Text className="font-semibold">Gerar com erro</Text>
-                    <Switch />
+                    <Switch onCheckedChange={e => setSearchParams({...searchParams, GerarComErro: e.valueOf()})} />
                 </div>
             </div>
             <div className="flex flex-col items-center justify-end gap-2 tablet:flex-row">
@@ -77,6 +120,6 @@ export function Relatorio() {
                     <Button.Action onClick={handleDelete}>Deletar</Button.Action>
                 </Button.Root>
             </div>
-        </form>
+        </div>
     )
 }

@@ -14,10 +14,14 @@ export class Cat83DataService{
                         FormatoExportacao: queryParams.Formato, 
                         Ano: queryParams.Ano, 
                         GerarPlanilhaComErro: queryParams.GerarComErro
+                    },
+                    headers: 
+                    {
+                        "Content-type": "application/json"
                     }
                 }
             )
-            .then((response) => response.data.dados)
+            .then((response) => console.log(response))
             .catch((error) => {
                 console.log(error);
             })

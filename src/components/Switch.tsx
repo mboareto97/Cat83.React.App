@@ -1,18 +1,18 @@
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import clsx from 'clsx';
 
-interface SwitchProps {}
+interface SwitchProps extends SwitchPrimitive.SwitchProps{}
 
-export function Switch({}: SwitchProps) {
+export function Switch (props: SwitchProps) {
     return(
-        <SwitchPrimitive.Root className=
+        <SwitchPrimitive.Root {...props}  className=
         {
             clsx
             (
                 'w-[42px] h-[25px]',
                 'bg-gray-300 rounded-full',
                 'checked:bg-green-400',
-                'hover:shadow-square transition duration-500'
+                'transition duration-500'
             )
         }>
             <SwitchPrimitive.Thumb className=
