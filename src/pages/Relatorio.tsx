@@ -16,16 +16,32 @@ export function Relatorio() {
 
     const handleSearch = () => {
         console.log(searchParams);
-        Cat83DataService.GeraPlanilha(searchParams);
+        Cat83DataService.GeraPlanilha(searchParams)
+        .then((response) => {
+            const linkSource = `data:${response.data.data.contentType};base64,${response.data.data.fileContents}`;
+            const downloadLink = document.createElement("a");
+            const fileName = response.data.data.fileDownloadName;
+
+            downloadLink.href = linkSource;
+            downloadLink.download = fileName;
+            downloadLink.click();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     };
 
     const handleDelete = () => {
-        Cat83DataService.RemovePlanlinha(searchParams);
+        Cat83DataService.RemovePlanlinha(searchParams)
+        .then((response) => console.log(response))
+        .catch((error) => {
+            console.log(error)
+        });
     }
 
     const handleChange = (campo:string, event: React.ChangeEvent<HTMLSelectElement>) => {
-        type obj = keyof typeof searchParams;
-        const campoChange = campo as obj;
+        type camposSearchParams = keyof typeof searchParams;
+        const campoChange = campo as camposSearchParams;
         const value = event.target.value;
         
         setSearchParams({...searchParams, [campoChange]: Number(value)});
@@ -59,29 +75,23 @@ export function Relatorio() {
                 <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Empresa" className="flex flex-col gap-2">
                         <Text className="font-semibold">Empresa</Text>
-                        <SelectInput.Root>
-                            <SelectInput.View campo='Empresa' eventChange={handleChange}>
-                                <SelectInput.Item dado={EmpresasArray} />
-                            </SelectInput.View>
-                        </SelectInput.Root>
+                        <SelectInput.View campo='Empresa' eventChange={handleChange}>
+                            <SelectInput.Item dado={EmpresasArray} />
+                        </SelectInput.View>
                     </label>
                     <label htmlFor="Mes" className="flex flex-col gap-2">
                         <Text className="font-semibold">Mês</Text>
-                        <SelectInput.Root>
-                            <SelectInput.View campo='Mes' eventChange={handleChange}>
-                                <SelectInput.Item dado={MesesArray} />
-                            </SelectInput.View>
-                        </SelectInput.Root>
+                        <SelectInput.View campo='Mes' eventChange={handleChange}>
+                            <SelectInput.Item dado={MesesArray} />
+                        </SelectInput.View>
                     </label>
                 </div>
                 <div className="flex flex-col gap-6 desktop:flex-row">
                     <label htmlFor="Formato" className="flex flex-col gap-2">
                         <Text className="font-semibold">Formato de Exportação</Text>
-                        <SelectInput.Root>
-                            <SelectInput.View campo='Formato' eventChange={handleChange}>
-                                <SelectInput.Item dado={FormatosArray} />
-                            </SelectInput.View>
-                        </SelectInput.Root>
+                        <SelectInput.View campo='Formato' eventChange={handleChange}>
+                            <SelectInput.Item dado={FormatosArray} />
+                        </SelectInput.View>
                     </label>
                     
                     <label htmlFor="Ano" className="flex flex-col gap-2">

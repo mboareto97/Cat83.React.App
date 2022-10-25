@@ -20,11 +20,7 @@ export class Cat83DataService{
                         "Content-type": "application/json"
                     }
                 }
-            )
-            .then((response) => console.log(response))
-            .catch((error) => {
-                console.log(error);
-            })
+            );
     }
 
     static RemovePlanlinha(queryParams: {Empresa: any, Mes: any, Ano: any}){
@@ -40,10 +36,26 @@ export class Cat83DataService{
                         Ano: queryParams.Ano
                     }
                 }
-            )
-            .then((response) => response.data.dados)
-            .catch((error) => {
-                console.log(error)
-            })
+            );
+    }
+
+    static TesteEndpoint(idProduto: number){
+        return AxiosHelper
+            .get
+            (
+                'Produto/Busca',
+                {
+                    params:
+                    {
+                        idProduto: idProduto
+                    },
+                    headers:
+                    {
+                        'content-type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'x-empresa': '010041'
+                    }
+                }
+            );
     }
 }

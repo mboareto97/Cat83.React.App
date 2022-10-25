@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { HtmlHTMLAttributes, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Text } from './Text';
+import logoBranco from "../../public/logoBranco.svg";
+import logoCatBranco from "../../public/logoCatBranco.svg";
 
 export interface SideBarRootProps {
     children: ReactNode;
@@ -46,7 +48,7 @@ function SideBarIcon (props: SideBarIconProps){
         } {...props}>
             <img className='h-10' src=
             {
-                !props.open ? '../../public/logoBranco.svg' : '../../public/logoCatBranco.svg'
+                !props.open ? logoBranco : logoCatBranco
             }
             >
             </img>

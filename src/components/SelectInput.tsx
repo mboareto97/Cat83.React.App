@@ -16,6 +16,9 @@ function SelectInputRoot(props: SelectInputRootProps){
                 'flex items-center w-64',
                 'py-2 px-4 gap-3 rounded bg-white',
                 'cursor-pointer transition duration-500',
+                'outline-none',
+                'text-gray-300 text-xs',
+                'focus:text-blue-700',
                 'focus-within:ring-2 ring-blue-700',
                 'hover:shadow-square',
             )
@@ -34,16 +37,22 @@ export interface SelectInputViewProps extends SelectHTMLAttributes<HTMLSelectEle
 function SelectInputView(props: SelectInputViewProps){
     return(        
         <div className='flex items-center w-64 gap-3'>
-            <select onChange={event => props.eventChange(props.campo, event)} className={
-                clsx
-                (
-                    'flex-1',
-                    'outline-none bg-transparent cursor-pointer',
-                    'text-gray-300 text-xs',
-                    'focus:text-blue-700',
-                    'after:border-transparent'
-                )
-            }>
+            <select 
+                onChange={event => props.eventChange(props.campo, event)} 
+                className={
+                    clsx
+                    (
+                        'flex items-center w-64',
+                        'py-2 px-4 gap-3 rounded bg-white',
+                        'cursor-pointer transition duration-500',
+                        'outline-none',
+                        'text-gray-300 text-xs',
+                        'focus:text-blue-700',
+                        'focus-within:ring-2 ring-blue-700',
+                        'hover:shadow-square',
+                    )
+                }
+            >
                 {props.children}
             </select>
         </div>
