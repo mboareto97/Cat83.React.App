@@ -9,9 +9,9 @@ export function Switch (props: SwitchProps) {
         {
             clsx
             (
-                'w-[42px] h-[25px]',
-                'bg-gray-300 rounded-full',
-                'checked:bg-green-400',
+                'w-16 h-6',
+                'bg-gray-100 rounded-full',
+                'checked:bg-blue-700',
                 'transition duration-500'
             )
         }>
@@ -19,10 +19,10 @@ export function Switch (props: SwitchProps) {
             {
                 clsx
                 (
-                    'block relative w-[21px] h-[21px]',
-                    'bg-white rounded-full',
+                    'block relative w-10 h-5',
+                    'bg-blue-700 rounded-full',
                     'transition-transform translate-x-[2px] will-change-transform',
-                    'checked:translate-x-[19px]',
+                    'checked:translate-x-[1.35rem] checked:bg-gray-100',
                     'duration-500',
                 )
             }/>

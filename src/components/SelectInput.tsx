@@ -1,6 +1,4 @@
-import * as SelectPrimitive from '@radix-ui/react-select';
 import clsx from 'clsx';
-import { CaretDown, CaretUp, Check, Placeholder } from 'phosphor-react';
 import { ReactNode, SelectHTMLAttributes } from 'react';
 
 export interface SelectInputRootProps {
@@ -13,14 +11,11 @@ function SelectInputRoot(props: SelectInputRootProps){
         {
             clsx
             (
-                'flex items-center w-64',
-                'py-2 px-4 gap-3 rounded bg-white',
+                'flex items-center w-48 h-10',
+                'py-3 px-2 gap-3 rounded bg-gray-100',
                 'cursor-pointer transition duration-500',
-                'outline-none',
-                'text-gray-300 text-xs',
-                'focus:text-blue-700',
                 'focus-within:ring-2 ring-blue-700',
-                'hover:shadow-square',
+                'hover:shadow-lg'
             )
         }>
             {props.children}
@@ -42,14 +37,10 @@ function SelectInputView(props: SelectInputViewProps){
                 className={
                     clsx
                     (
-                        'flex items-center w-64',
-                        'py-2 px-4 gap-3 rounded bg-white',
-                        'cursor-pointer transition duration-500',
-                        'outline-none',
-                        'text-gray-300 text-xs',
+                        'flex-1',
+                        'outline-none bg-transparent cursor-pointer',
+                        'text-gray-900 text-xs',
                         'focus:text-blue-700',
-                        'focus-within:ring-2 ring-blue-700',
-                        'hover:shadow-square',
                     )
                 }
             >

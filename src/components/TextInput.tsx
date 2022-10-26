@@ -11,11 +11,11 @@ function TextInputRoot(props: TextInputRootProps){
         {
             clsx
             (
-                'flex items-center w-64',
-                'py-2 px-4 gap-3 rounded bg-white',
+                'flex items-center w-48 h-10',
+                'py-3 px-2 gap-3 rounded bg-gray-100',
                 'cursor-pointer transition duration-500',
                 'focus-within:ring-2 ring-blue-700',
-                'hover:shadow-square',
+                'hover:shadow-lg',
             )
         }>
             {props.children}
@@ -34,7 +34,7 @@ function TextInputInput(props: TextInputInputProps){
                 (
                     'flex-1',
                     'outline-none bg-transparent cursor-pointer',
-                    'text-gray-300 text-xs placeholder:text-gray-300',
+                    'text-gray-900 text-xs placeholder:text-gray-900',
                     'focus:placeholder:text-blue-700',
                     'focus:text-blue-700',
                 )
