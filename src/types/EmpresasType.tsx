@@ -1,3 +1,3 @@
 export enum EmpresasType{
-    Promissao = 24
+    "Promissão" = 24
 }

@@ -3,6 +3,7 @@ import { ReactNode, SelectHTMLAttributes } from 'react';
 
 export interface SelectInputRootProps {
     children: ReactNode;
+    className?: string;
 }
 
 function SelectInputRoot(props: SelectInputRootProps){
@@ -15,7 +16,8 @@ function SelectInputRoot(props: SelectInputRootProps){
                 'py-3 px-2 gap-3 rounded bg-gray-100',
                 'cursor-pointer transition duration-500',
                 'focus-within:ring-2 ring-blue-700',
-                'hover:shadow-lg'
+                'hover:shadow-lg',
+                props.className,
             )
         }>
             {props.children}
@@ -27,6 +29,7 @@ export interface SelectInputViewProps extends SelectHTMLAttributes<HTMLSelectEle
     children: ReactNode;
     campo: string;
     eventChange: any;
+    attachClass?: string;
 }
 
 function SelectInputView(props: SelectInputViewProps){
@@ -39,8 +42,9 @@ function SelectInputView(props: SelectInputViewProps){
                     (
                         'flex-1',
                         'outline-none bg-transparent cursor-pointer',
-                        'text-gray-900 text-xs',
+                        'text-xs',
                         'focus:text-blue-700',
+                        props.attachClass,
                     )
                 }
             >

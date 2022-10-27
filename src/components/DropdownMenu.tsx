@@ -46,6 +46,7 @@ export function DropdownMenu(props: DropdownMenuProps) {
                             )
                         }
                         onClick={() => navigate(item.Route)}
+                        key={index}
                     >
                         {item.Icon}
                         <Text className='font-semibold'>{item.Text}</Text>

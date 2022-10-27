@@ -3,6 +3,7 @@ import { InputHTMLAttributes, ReactNode } from 'react'
 
 export interface TextInputRootProps {
     children: ReactNode;
+    className?: string;
 }
 
 function TextInputRoot(props: TextInputRootProps){
@@ -16,6 +17,7 @@ function TextInputRoot(props: TextInputRootProps){
                 'cursor-pointer transition duration-500',
                 'focus-within:ring-2 ring-blue-700',
                 'hover:shadow-lg',
+                props.className,
             )
         }>
             {props.children}
@@ -23,7 +25,9 @@ function TextInputRoot(props: TextInputRootProps){
     )
 }
 
-export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElement> {}
+export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElement> {
+    attachClass?: string;
+}
 
 function TextInputInput(props: TextInputInputProps){
     return(
@@ -34,9 +38,10 @@ function TextInputInput(props: TextInputInputProps){
                 (
                     'flex-1',
                     'outline-none bg-transparent cursor-pointer',
-                    'text-gray-900 text-xs placeholder:text-gray-900',
+                    'text-gray-900 text-xs',
                     'focus:placeholder:text-blue-700',
                     'focus:text-blue-700',
+                    props.attachClass,
                 )
             }
             {...props}
