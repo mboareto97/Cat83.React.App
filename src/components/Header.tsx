@@ -6,7 +6,9 @@ import { FileText } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
 import { DropdownMenu } from './DropdownMenu';
 
-export interface HeaderProps {}
+export interface HeaderProps {
+    loading: boolean;
+}
 
 export function Header(props: HeaderProps) {
     const [open, setOpen] = useState(false);
@@ -19,7 +21,8 @@ export function Header(props: HeaderProps) {
                 {
                     clsx
                     (
-                        'flex fixed justify-between w-full p-4 bg-white border-b-[0.05rem] border-gray-100'
+                        'flex fixed justify-between w-full p-4 bg-white border-b-[0.05rem] border-gray-100',
+                        [props.loading ? 'top-[0]' : '']
                     )
                 }                
             >                

@@ -70,6 +70,10 @@ module.exports = {
             transform: `translateX(calc(100% + 1rem))`,
           },
         },
+        "spin": {
+          "0%": { transform: "rotate(0deg)"},
+          "100%": {transform: "rotate(360deg)"},
+        }
       }      
     },
     animation: {
@@ -80,6 +84,7 @@ module.exports = {
       "toast-slide-in-bottom":
         "toast-slide-in-bottom 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       "toast-swipe-out": "toast-swipe-out 100ms ease-out forwards",
+      "spin": "spin 1s linear infinite",
     }
   },
   plugins: [
